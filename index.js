@@ -7,6 +7,11 @@
 
 const express = require('express');
 const path = require('path');
+const MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb-connection-string', (err, client) => {
+    /** Do something here */
+});
 
 
 /**
