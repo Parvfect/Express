@@ -12,7 +12,24 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 
 /** Connection string to connect to mongodb (leave empty when pushing to git!!) */
-const connectionstring = '';
+const connectionstring = 'mongodb+srv://parvfect:raingryph456@cluster0.xzipi.mongodb.net/<dbname>?retryWrites=true&w=majority';
+const client = new MongoClient(connectionstring);
+
+
+/** Stops all execution until this block is done */
+
+try{
+
+    await client.connect();
+    await listDatabases(client);
+
+}catch(e) {
+    console.error(e);
+}finally{
+    await.client.close();
+}
+
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
