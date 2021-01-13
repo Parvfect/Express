@@ -1,0 +1,61 @@
+ h1{
+   font-weight: bold;
+   text-align: center;
+ }
+ 
+ 
+
+
+
+ /* The icon bar */
+ .icon-bar {
+  position: fixed;
+  top: 80%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+
+.instagram {
+  background: #e1306c;
+  color: white;
+}
+
+.github {
+  background: black;
+  color: black;
+}
+
+.spotify {
+  background: green;
+  color: green;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+} 
+
+.discord{
+  background: black;
+  color: white;
+}
