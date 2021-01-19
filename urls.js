@@ -51,7 +51,10 @@ function main(app){
         views.photos(res);
     })
 
-    
+    app.get('/stories/*', (req, res) => {
+        var slug = req.url.slice(8);
+        views.story(res, req.url);
+    })
 }
 
 

@@ -6,72 +6,11 @@
  */
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
-const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const urls = require('./urls');
+const imp = require("./models/impList");
 
-/** Connection string to connect to mongodb (leave empty when pushing to git!!) */
-const connectionstring = 'mongodb+srv://parvfect:raingryph456@cluster0.xzipi.mongodb.net/<dbname>?retryWrites=true&w=majority';
-const client = new MongoClient(connectionstring);
-
-
-/** Stops all execution until this block is done */
-
-/** 
-try{
-
-    await client.connect();
-    await listDatabases(client);
-
-}catch(e) {
-    console.error(e);
-}finally{
-    await.client.close();
-}
-
-*/
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
-/** Connecting to mongodb */
-/*MongoClient.connect(connectionstring, {
-    useUnifiedTopology : true
-}, (err, client) => {
-    if(err) return console.error(err);
-    console.log("Connection to database secured!");
-    
-    /** Naming the database */
-  /*  const db = client.db('berd');
-    const Users = db.collection('Users');
-    
-    Users.insertOne("hola?")
-
-    /** We need the db variable from the connection to to access MongoDB.
-     *  This means we need to put our express request handlers into the MongoClient’s then call. */
-    
-     /** 
-    app.post('/new_user', (req, res) => {
-        Users.insertOne(req.body)
-        .then(result => {
-            console.log(result)
-        })
-        .catch(error => console.error(error))
-    })
-    */
-
-    //app.use();
-    //app.get();
-    //app.post();
-    //app.listen();
-//});
-
-
-/**
- * App Variables
- */
 
 /** If available process.env.Port else 8000 */
 const port = "8003";

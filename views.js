@@ -1,10 +1,10 @@
 // views.js
 
-
+const db = require('./db');
 
 /** Homepage view */
 function home(res){
-    res.render("index", { title: "Homepage" });
+    res.render("index", { title: "Homepage",  });
 }
 
 /** Impossible List view */
@@ -23,8 +23,14 @@ function writings(res){
 }
 
 /** Stories view */
-function stories(res){
-    res.render("stories", { title: "stories" });
+async function stories(res){
+    StoriesObject = await db.find("Berd", "Stories",{});
+    res.render("stories", {Stories : StoriesObject})
+}
+
+async function story(res, slug){
+    StoryObject = await db.find("Berd", "Stories", {});
+    res.render("stories", { title: "stories", name : StoryObject.name, content : StoryObject.content});
 }
 
 /** Explorations view */
@@ -55,5 +61,6 @@ module.exports = {
     explorations : explorations, 
     photoAlbums : photoAlbums, 
     photos : photos, 
-    admin : admin
+    admin : admin, 
+    story : story
 };

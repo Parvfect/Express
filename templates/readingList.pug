@@ -1,22 +1,14 @@
 extends layout
 
 block layout-content
-    div.View 
-        h1.Banner Parvfection
-        div.message
-            div.title
-                h3 My Reading List 
-                h1 Prepare to be amazed 
-            span.details Access my greatness
-        
-        form(action="/new_user" method="POST")
-            p Name:
-            input(type="text" name="Name" placeholder="Name")
-            p Email Address:
-            input(type="text" name="Email" placeholder="Email")
-        button(type="submit")
-        
-        div.NavButtons
-            a(href = "/")
-                div.NavButton Go back home
-        
+    header.w3-container.w3-black.w3-center(style='padding:128px 16px')
+        h1.w3-margin.w3-jumbo Book Recos
+        p.w3-xlarge With short descriptions
+        br
+        br
+        br
+        br
+        a(href='/')
+        img(src='/write.jpeg' style='width: 300px;height: 450px;')
+
+                

@@ -1,29 +1,48 @@
 
-const {MongoClient} = require('mongodb');
+const http = require('http');
 
+const url = 'mongodb+srv://parvfect:raingryph456@cluster0.xzipi.mongodb.net/Berd?retryWrites=true&w=majority';
 
-const uri = '';
-async function main(){
+//Import the mongoose module
+var mongoose = require('mongoose');
+
+var MongoClient = require('mongodb').MongoClient;
+
+var str = "";
+
+function main(){
     
-    const client = new MongoClient(uri);
- 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
- 
-        // Make the appropriate DB calls
-        //await createCollection(client, "Stories");
-        //await insertIntoCollection(client, "Stories", {name : 'The Bleeding Violin', summary:"", content:"", sno:1})
-        //await findFromCollection(client, "Stories", "");
-        console.log(listCollections(client));
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
 
-main().catch(console.error);
+    mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+
+    //Get the default connection
+    var db = mongoose.connection;
+    
+    var Schema = mongoose.Schema;
+
+    var SomeModelSchema = new Schema({
+    name: String,
+    });    
+
+    // Compile model from schema
+    var SomeModel = mongoose.model('SomeModel', SomeModelSchema );
+    
+    var instance = new SomeModel({name : "Parv"});
+
+    instance.save(function (err) {
+        if (err) return handleError(err);
+        // saved!
+    });
+
+    SomeModel.create({ name: 'also_awesome' }, function (err, awesome_instance) {
+        if (err) return handleError(err);
+        conosle.log("Saved")
+    });
+    
+    var query = SomeModel.find({ "name" : "Parv"})
+    
+}
+    
 
 async function listDatabases(client){
     databasesList = await client.db().admin().listDatabases();
@@ -57,3 +76,9 @@ async function findFromCollection(client, collection, data){
 async function listCollections(client){
     return client.db().listCollections().toArray();
 }
+
+module.exports = {
+    main : main,
+    listCollections : listCollections,
+    insertIntoCollection : insertIntoCollection
+};
