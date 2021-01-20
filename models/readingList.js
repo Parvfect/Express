@@ -1,5 +1,6 @@
 // /models/readingList.js
 
+const mongoose = require('mongoose');
 
 const readingListSchema = new mongoose.Schema({
     name : String, 
@@ -7,7 +8,7 @@ const readingListSchema = new mongoose.Schema({
     slug : String
 });
 
-storySchema.methods.speak = function () {
+readingListSchema.methods.speak = function () {
     return this.name;
 }
 

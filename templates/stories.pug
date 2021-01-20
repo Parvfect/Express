@@ -7,16 +7,13 @@ block layout-content
     br
     br
     br
-    p #{StoriesObject.name} 
-    a(href = "/stories/violin") fdaswfas
     .card-group
     br
     .card
         .card-body
             div.card
-                
-                a.card-title(href = "#{StoriesObject.slug}" style='color: black;')
-                h3 #{StoriesObject.name}
-                p.card-text
-                    casbalnace
-                h4  #{StoriesObject.summary}
+                for i in Stories
+                    a.card-title(href = "#{i.slug}" style='color: black;')
+                        h3 #{i.name}
+                    p.card-text 
+                    h4  #{i.summary}

@@ -6,6 +6,12 @@ var uri = "mongodb+srv://berd:1234@cluster0.zwnic.mongodb.net/Berd?retryWrites=t
 
 var story = require("./models/stories");
 
+var impList = require("./models/impList");
+
+var readingList = require("./models/readingList");
+
+var photos = require("./models/projects");
+
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true

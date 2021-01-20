@@ -1,6 +1,21 @@
 // views.js
 
-const db = require('./db');
+const storyModel = require("./models/stories");
+const impListModel = require("./models/impList");
+const readingListModel = require("./models/readingList");
+const photoModel = require("./models/projects");
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://berd:1234@cluster0.zwnic.mongodb.net/Berd?retryWrites=true&w=majority";
+
+
+
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    // we're connected!
+    console.log("Connected succesfully!");
+});
 
 /** Homepage view */
 function home(res){
@@ -24,12 +39,14 @@ function writings(res){
 
 /** Stories view */
 async function stories(res){
-    StoriesObject = await db.find("Berd", "Stories",{});
-    res.render("stories", {Stories : StoriesObject})
+    await storyModel.find(function(err, StoriesObject){
+        if (err) console.error(err);
+        res.render("stories", {Stories : StoriesObject})
+    });
 }
 
 async function story(res, slug){
-    StoryObject = await db.find("Berd", "Stories", {});
+    StoryObject = await storyModel.find({slug : slug});
     res.render("stories", { title: "stories", name : StoryObject.name, content : StoryObject.content});
 }
 
