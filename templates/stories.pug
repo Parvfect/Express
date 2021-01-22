@@ -13,7 +13,7 @@ block layout-content
         .card-body
             div.card
                 for i in Stories
-                    a.card-title(href = "#{i.slug}" style='color: black;')
+                    a.card-title(href = "/stories/" + i.slug style='color: black;')
                         h3 #{i.name}
                     p.card-text 
                     h4  #{i.summary}

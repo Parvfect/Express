@@ -18,22 +18,28 @@ db.once('open', function() {
 });
 
 /** Homepage view */
-function home(res){
+async function home(res){
     res.render("index", { title: "Homepage",  });
 }
 
 /** Impossible List view */
-function impList(res){
-    res.render("impossibleList", { title: "Impossible List" });
+async function impList(res){
+    await impListModel.find(function(err, imp){
+        if (err) console.error(err);
+        res.render("impossibleList", {imp : imp });
+    });
 }
 
 /** Reading list view */
-function readingList(res){
-    res.render("readingList", { title: "Reading List" });
+async function readingList(res){
+    await readingListModel.find(function(err, rl){
+        if (err) console.error(err);
+        res.render("readingList", {rl : rl });
+    });
 }
 
 /** Writings view */
-function writings(res){
+async function writings(res){
     res.render("writings", { title: "writings" });
 }
 
@@ -46,25 +52,28 @@ async function stories(res){
 }
 
 async function story(res, slug){
-    StoryObject = await storyModel.find({slug : slug});
-    res.render("stories", { title: "stories", name : StoryObject.name, content : StoryObject.content});
+    await storyModel.find({slug : "violin"}, function(err, story){
+        if (err) console.error(err);
+        console.log(story.name);
+        res.render("StoryTemplate", {name : story.name, content : story.content})
+    });
 }
 
 /** Explorations view */
-function explorations(res){
+async function explorations(res){
     res.render("explorations", { title: "explorations" });
 }
 
 /** Admin view */
-function admin(res){
+async function admin(res){
     res.render("admin", { title: "admin" });
 }
 
-function photoAlbums(res){
+async function photoAlbums(res){
     res.render("photoAlbums", { title: "photoAlbums" });
 }
 
-function photos(res){
+async function photos(res){
     res.render("photos", { title: "photos" });
 }
 

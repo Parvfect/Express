@@ -52,8 +52,8 @@ function main(app){
     })
 
     app.get('/stories/*', (req, res) => {
-        var slug = req.url.slice(8);
-        views.story(res, req.url);
+        var slug = req.url.slice(9);
+        views.story(res, slug);
     })
 }
 
